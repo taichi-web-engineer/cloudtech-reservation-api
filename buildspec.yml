@@ -19,3 +19,11 @@ phases:
     commands:
       - docker tag ${ECR_REPO_NAME}:latest ${ECR_IMAGE_URI}
       - docker push ${ECR_IMAGE_URI}
+
+      - printf '{"ImageURI":"%s"}' ${ECR_IMAGE_URI} > imageDetail.json
+
+artifacts:
+  files:
+    - appspec.yml
+    - taskdef.json
+    - imageDetail.json
